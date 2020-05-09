@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/country_navigation"
+    app:startDestination="@id/feedFragment">
+
+    <fragment
+        android:id="@+id/feedFragment"
+        android:name="com.mesutdurmuser.kotlincountries.view.FeedFragment"
+        android:label="fragment_feed"
+        tools:layout="@layout/fragment_feed" >
+        <action
+            android:id="@+id/action_feedFragment_to_countryFragment"
+            app:destination="@id/countryFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/countryFragment"
+        android:name="com.mesutdurmuser.kotlincountries.view.CountryFragment"
+        android:label="fragment_country"
+        tools:layout="@layout/fragment_country" >
+        <action
+            android:id="@+id/action_countryFragment_to_feedFragment"
+            app:destination="@id/feedFragment" />
+        <argument
+            android:name="countryUuid"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+</navigation>
+<!--
+navigation isminde new resource file ekliyoruz eklendikten sonra içine xml dosyası eklenir
+bu dosyanın ismi ve tipi navigation seçilir. Sonrasında sol taraftan add denerek istenilen
+ fragmentler eklenir. Sonrasında nav host fragment belirlenir ve ilgili aktivitenin içine
+ nav host birakilir. Constrait verilir mutlaka margiinler 1 dp olabilir, constraintler parent.
+ navigation grapha eklenecek fragmentlere mutlaka layout tag i eklenir (xml) ve mainspaceler
+ bunun içerisini alınır. Projeye iki tane fragment ekliyoruz bunlardan bir tanesi ülkelerin
+ gösterileceği fragment bir diğeri ise ülkenin detaylarının gösterileceği fragment.
+ Sonrasında navigation içerisine fragmentler eklenir burada id lere dikkat etmek gerekli
+ (aksiyonların). Bunları birbirine bağladığımızda aksiyonlar oluşur. Sonrasında rebuild yapmak gerekir
+ çünkü aksiyonlar vb içinkalsörler (java generated) oluşacaktır. -->
